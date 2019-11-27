@@ -1,23 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "85c0fd7e8f6c3655610e1ab88b409d0d",
+    "revision": "cd7ca31117e5ddcbe5a939fdbb23d19f",
     "url": "/mediaFrancaisDev/index.html"
   },
   {
-    "revision": "cb17c1a00036f968bf11",
-    "url": "/mediaFrancaisDev/static/css/2.7aa6f31f.chunk.css"
-  },
-  {
-    "revision": "ce2f588ee03ee1bdbf30",
+    "revision": "d1f3e79926821d4d2a9f",
     "url": "/mediaFrancaisDev/static/css/main.8cc8da5a.chunk.css"
   },
   {
-    "revision": "cb17c1a00036f968bf11",
-    "url": "/mediaFrancaisDev/static/js/2.39ac959b.chunk.js"
+    "revision": "d2a9ca4db1158cc3615f",
+    "url": "/mediaFrancaisDev/static/js/2.3de4d9a4.chunk.js"
   },
   {
-    "revision": "ce2f588ee03ee1bdbf30",
-    "url": "/mediaFrancaisDev/static/js/main.c3c9c1ac.chunk.js"
+    "revision": "d1f3e79926821d4d2a9f",
+    "url": "/mediaFrancaisDev/static/js/main.cbc4a3d3.chunk.js"
   },
   {
     "revision": "22ac011821cd4506f66c",
