@@ -1,0 +1,151 @@
+id	nom	typeLibelle	typeCode	rangChallenges	milliardaireForbes	mediaType	mediaPeriodicite	mediaEchelle	commentaire	theme	country
+1	Claude Perdriel	Personne physique	1	339					Casablanca	1	AD
+2	Sophia Publications	Personne morale	2						New York	1	AE
+3	Groupe Perdriel	Personne morale	2						Tokyo	1	AF
+4	L’histoire	Média	3			GPE	Mensuel		Istanbul	1	AG
+5	Historia	Média	3			GPE	Mensuel		Mexico	1	AI
+6	Challenges	Média	3			GPE	Hebdomadaire			1	AL
+7	Sciences & Avenir	Média	3			GPE	Mensuel			1	AM
+8	L’Opinion	Média	3			GPE	Quotidien		Paris	1	AN
+9	Prisa	Personne morale	2						Netherland	1	AO
+10	Xavier Niel	Personne physique	1	16					Moscow	1	AQ
+11	Matthieu Pigasse	Personne physique	1						Stalingrad	1	AR
+12	Les Nouvelles Éditions indépendantes	Personne morale	2						Sochi	1	AS
+13	Le Nouveau Monde	Personne morale	2						Autriche	1	AT
+14	Le Monde libre	Personne morale	2						Italy	1	AU
+15	Le Monde SA	Personne morale	2							1	AW
+16	L’Obs	Média	3			GPE	Hebdomadaire			1	AZ
+17	Prier	Média	3			GPE	Mensuel			1	BA
+18	"M, le magazine du Monde"	Média	3			GPE	Hebdomadaire			1	BB
+19	Le Monde	Média	3			GPE	Hebdomadaire			1	BD
+20	Télérama	Média	3			GPE	Mensuel			1	BE
+21	Courrier international	Média	3			GPE	Hebdomadaire			1	BF
+22	Le Monde des religions	Média	3			GPE	Mensuel			1	BG
+23	La Vie	Média	3			GPE	Hebdomadaire			1	BH
+24	Le Monde diplomatique	Média	3			GPE	Mensuel			1	BI
+25	Manière de voir	Média	3			GPE	Bimestriel			1	BJ
+26	Huffingtonpost.fr	Média	3			Site			Pure player	1	BM
+27	AOL	Personne morale	2							1	BN
+28	Huffington Post	Personne morale	2							1	BO
+30	Radio Nova	Média	3			Radio		National		1	BR
+31	Les Inrockuptibles	Média	3			GPE	Hebdomadaire			1	BS
+32	Vice.com	Média	3			Site			Pure player	1	BT
+33	Les Amis du Monde diplomatique	Personne morale	2							1	BV
+34	Association Günter-Holzmann	Personne morale	2							1	BW
+35	Famille Dassault	Personne physique	1	7						1	BY
+36	Groupe Dassault	Personne morale	2							1	BZ
+37	Groupe Figaro	Personne morale	2							1	CA
+38	Le Figaro	Média	3			GPE	Quotidien			1	CC
+39	Figaro Magazine	Média	3			GPE	Hebdomadaire			1	CD
+40	Le Particulier	Média	3			GPE	Mesuel			1	CF
+41	La Lettre de l’Expansion	Média	3			GPE	Mensuel			1	CG
+42	Bernard Arnault	Personne physique	1	1						1	CH
+43	LVMH	Personne morale	2							1	CI
+44	Le Parisien	Média	3			GPE	Quotidien			1	CK
+45	Le Parisien Week-End	Média	3			GPE	Hebdomadaire			1	CL
+46	Le Parisien économie	Média	3			GPE	Hebdomadaire			1	CM
+47	Aujourd’hui en France	Média	3			GPE	Quotidien			1	CN
+48	Groupe Les Échos	Personne morale	2							1	CO
+49	Les Échos	Média	3			GPE	Quotidien			1	CR
+50	Investir	Média	3			GPE	Hebdomadaire			1	CU
+51	Investir Magazine	Média	3			GPE	Mensuel			1	CV
+52	Les Échos Week-End	Média	3			GPE	Hebdomadaire			1	CX
+53	Radio Classique	Média	3			Radio	National			1	CY
+54	Famille Bettencourt	Personne physique	1	3						2	CZ
+55	Nicolas Beytout	Personne physique	1							2	DE
+56	Patrick Drahi	Personne physique	1	10						2	DJ
+57	Altice	Personne morale	2							2	DK
+58	Altice France	Personne morale	2							2	DM
+59	L’Express	Média	3			GPE	Hebdomadaire			2	DO
+60	Libération	Média	3			GPE	Quotidien			2	DZ
+61	NextRadioTV	Personne morale	2							2	EC
+62	BFM TV	Média	3			Télévision			Gratuit	2	EE
+63	RMC Découverte	Média	3			Télévision			Gratuit	2	EG
+64	RMC	Média	3			Radio		National		2	EH
+65	BFM Business	Média	3			Radio		National		2	ER
+66	Numéro 23	Média	3			Télévision			Gratuit	2	ES
+67	Arnaud Lagardère	Personne physique	1	389						2	ET
+68	Qatar Investment Authority	Personne morale	2							2	FI
+69	Lagardère SCA	Personne morale	2							2	FJ
+70	Lagardère Active	Personne morale	2							2	FK
+71	Le Journal du dimanche	Média	3			GPE	Hebdomaire			2	FM
+72	Paris Match	Média	3			GPE	Hebdomaire			2	FO
+73	Gulli	Média	3			Télévision			Gratuit	2	FR
+74	Europe 1	Média	3			Radio		National		2	GA
+75	RFM	Média	3			Radio		National		2	GB
+76	Virgin Radio	Média	3			Radio		National		2	GD
+77	Vincent Bolloré	Personne physique	1	12						2	GE
+78	Financière de l’Odet	Personne morale	2							2	GF
+79	Bolloré	Personne morale	2							2	GG
+80	CNews	Média	3			GPE	Quotidien			2	GH
+81	Vivendi	Personne morale	2							2	GI
+82	Canal +	Média	3			Télévision			Semi-payant	2	GL
+83	C8	Média	3			Télévision			Gratuit	2	GM
+84	CNews	Média	3			Télévision			Gratuit	2	GN
+85	CStar	Média	3			Télévision			Gratuit	2	GP
+86	Iskandar Safa	Personne physique	1	90						2	GQ
+87	Privinvest	Personne morale	2							2	GR
+88	Groupe Valmonde	Personne morale	2							2	GS
+89	Valeurs actuelles	Média	3			GPE	Hebdomadaire			2	GT
+90	Mieux vivre votre argent	Média	3			GPE	Mensuel			2	GU
+91	Yves de Chaisemartin	Personne physique	1							2	GW
+92	Daniel Křetínský	Personne physique	1		oui					2	GY
+93	Czech Media Invest	Personne morale	2							2	GZ
+94	Marianne	Média	3			GPE	Hebdomadaire			2	HK
+95	François Pinault	Personne physique	1	6						2	HM
+96	Artémis	Personne morale	2							2	HN
+97	Groupe Sebdo-Le Point	Personne morale	2							2	HR
+98	Groupe L’Agefi	Personne morale	2							2	HT
+99	Point de vue	Média	3			GPE	Hebdomadaire			3	HU
+100	Le Point	Média	3			GPE	Hebdomadaire			3	ID
+101	L’Agefi hebdo	Média	3			GPE	Hebdomadaire			3	IE
+102	Famille Mohn	Personne physique	1		oui					3	IL
+103	Bertelsmann	Personne morale	2							3	IM
+104	Gruner + Jahr	Personne morale	2							3	IN
+105	RTL Group	Personne morale	2							3	IO
+106	Prisma Media	Personne morale	2							3	IQ
+107	Capital	Média	3			GPE	Mensuel			3	IR
+108	Management	Média	3			GPE	Mensuel			3	IS
+109	Harvard Business Review	Média	3			GPE	Bimestriel			3	IT
+110	Groupe M6	Personne morale	2							3	JE
+111	M6	Média	3			Télévision			Gratuit	3	JM
+112	W9	Média	3			Télévision			Gratuit	3	JO
+113	6ter	Média	3			Télévision			Gratuit	3	JP
+114	RTL	Média	3			Radio	National			3	KE
+115	RTL2	Média	3			Radio	National			3	KG
+116	Fun Radio	Média	3			Radio	National			3	KH
+117	Georges Ghosn	Personne physique	1							3	KI
+118	Ghosn Capital	Personne morale	2							3	KM
+119	VSD	Média	3			GPE	Mensuel			3	KN
+120	Martin et Olivier Bouygues	Personne physique	1	33						3	KP
+121	Bouygues	Personne morale	2							3	KR
+122	Groupe TF1	Personne morale	2							3	KW
+123	TF1	Média	3			Télévision			Gratuit	3	KY
+124	TFX	Média	3			Télévision			Gratuit	3	KZ
+125	LCI	Média	3			Télévision			Gratuit	3	LA
+126	TF1 Séries Films	Média	3			Télévision			Gratuit	3	LB
+127	TMC	Média	3			Télévision			Gratuit	3	LC
+128	République française	État	4							3	LI
+129	Länder de République fédérale d’Allemagne	État	4							3	LK
+130	Renault	Personne morale	2							3	LR
+131	La Chaîne parlementaire	Média	3			Télévision			Gratuit	3	LS
+132	Public Sénat	Média	3			Télévision			Gratuit	3	LT
+133	France Médias Monde	Personne morale	2							3	LU
+134	France Télévision	Personne morale	2							3	LV
+135	Radio France	Personne morale	2							3	LY
+136	Arte France	Personne morale	2							3	MA
+137	Monte Carlo Doualiya	Média	3			Radio		International		3	MC
+138	Radio France International	Média	3			Radio		International		3	MD
+139	France 24	Média	3			Télévision		International		3	ME
+140	TV5 Monde	Média	3			Télévision		International		3	MG
+141	France 2	Média	3			Télévision			Gratuit	3	MH
+142	France 3	Média	3			Télévision			Gratuit	3	MK
+143	France 5	Média	3			Télévision			Gratuit	3	ML
+144	France 4	Média	3			Télévision			Gratuit	3	MM
+145	France Ô	Média	3			Télévision			Gratuit	3	MN
+147	France Inter	Média	3			Radio		National		3	MO
+148	France Musique	Média	3			Radio		National		3	MP
+149	France Culture	Média	3			Radio		National		3	MQ
+150	FIP	Média	3			Radio		National		3	MR
+151	France Bleu	Média	3			Radio		National		3	MS
+152	France Info	Média	3			Radio		National		3	MT
