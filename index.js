@@ -7,14 +7,14 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Put all API endpoints under '/api'
-app.get('/api/passwords', (req, res) => {
-  console.log(`Sent 20 passwords`);
+app.get('/api/show', (req, res) => {
+  console.log(`Hello word`);
 });
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  res.sendFile(path.join(__dirname,'/client/build/','index.html'));
 });
 
 const port = process.env.PORT || 5000;
