@@ -70,30 +70,30 @@ class MediaFrancaisContainer extends Component {
     return <div></div>;
   }
 
-  onClickHandler = () => {
-    const data = new FormData() 
-    data.append('file', this.state.selectedFile)
-    console.log("test",this.state.selectedFile);
-    axios.post("/upload", data, { // receive two parameter endpoint url ,form data 
-  })
-  .then(res => { // then print response status
-    if (res.status !== 200) {
-      console.log(`There was a problem: ${res.status}`);
-      return;
+
+    onClickHandler = () => {
+      const data = new FormData() 
+      data.append('file', this.state.selectedFile)
+      axios.post("http://localhost:8000/upload", data, { // receive two parameter endpoint url ,form data 
+    })
+    .then(res => { // then print response status
+      /*if (res.status !== 200) {
+        console.log(`There was a problem: ${res.statusText}`);
+        return;
+      }*/
+      if(res.data.filename !=null){
+        this.readMediaFile(res.data.filename);
+      }    
+    })
     }
-    if(res.data.filename !=null){
-      this.readMediaFile(res.data.filename);
-    }    
-  })
-}
+      
+    uploadFile = event => {
+        var file = event.target.files[0];
 
-  uploadFile = event => {
-    var file = event.target.files[0];
-
-    this.setState({
-      selectedFile: file,
-    });
-  };
+        this.setState({
+          selectedFile: file,
+        });
+      };
 
   changeTheme = theme => {
     if (theme == 0) {

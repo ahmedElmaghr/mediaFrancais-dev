@@ -2,8 +2,8 @@ var express = require('express');
 var app = express();
 var multer = require('multer')
 var cors = require('cors');
-const path = require('path');
 
+PORT = process.env.PORT || 8000;
 app.use(cors())
 
 var storage = multer.diskStorage({
@@ -15,26 +15,10 @@ var storage = multer.diskStorage({
   }
 })
 
-
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-
-
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
-app.get('mediaFrancais', (req, res) => {
-  res.sendFile(path.join(__dirname,'/client/build/','index.html'));
-});
-//just for test
-app.get('/show', (req, res) => {
-  console.log(`Hello word`);
-});
-
-//MULTER upload
 var upload = multer({ storage: storage }).single('file')
 
 app.post('/upload',function(req, res) {
-     
+    console.log("test") 
     upload(req, res, function (err) {
            if (err instanceof multer.MulterError) {
                return res.status(500).json(err)
@@ -46,7 +30,7 @@ app.post('/upload',function(req, res) {
     })
 
 });
-var PORT = process.env.PORT || 5000
+
 app.listen(PORT, function() {
 
     console.log(`App running on port ${PORT}`);
