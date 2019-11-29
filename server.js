@@ -1,4 +1,3 @@
-const path = require('path');
 var express = require('express');
 var app = express();
 var multer = require('multer')
@@ -18,14 +17,14 @@ var storage = multer.diskStorage({
     cb(null, Date.now() + '-' +file.originalname )
   }
 })
-if(process.env === "production" ){
+if(process.env.NODE_ENV === "production" ){
   console.log("mode production");
   app.use(express.static('client/build'));
-
+  const path = require('path');
   app.get('*',(req,res)=>{
     console.log("res",res)
     console.log("file sent",path.join(publicPath, 'index.html'))
-    res.sendFile(path.join(publicPath, 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   })
 }
 /*
