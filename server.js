@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var multer = require('multer')
-const publicPath = path.join(__dirname, 'client','build');
+//const publicPath = path.join(__dirname, 'client','build');
 var cors = require('cors');
 
 
@@ -23,7 +23,7 @@ if(process.env.NODE_ENV === "production" ){
   const path = require('path');
   app.get('*',(req,res)=>{
     console.log("res",res)
-    console.log("file sent",path.join(publicPath, 'index.html'))
+    console.log("file sent",path.resolve(__dirname, 'client', 'build', 'index.html'))
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   })
 }
