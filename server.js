@@ -1,6 +1,8 @@
+const path = require('path');
 var express = require('express');
 var app = express();
 var multer = require('multer')
+const publicPath = path.join(__dirname, 'build');
 var cors = require('cors');
 
 PORT = process.env.PORT || 8000;
