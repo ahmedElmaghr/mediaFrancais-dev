@@ -22,7 +22,7 @@ if(process.env.NODE_ENV === "production" ){
   app.use(express.static('client/build'));
   const path = require('path');
   app.get('*',(req,res)=>{
-    console.log("res",res)
+    //console.log("res",res)
     console.log("file sent",path.resolve(__dirname, 'client', 'build', 'index.html'))
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   })
@@ -34,21 +34,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 */
-
-app.post('/upload',function(req, res) {
-     console.log("call upload funct")
-    upload(req, res, function (err) {
-      console.log("err",err);
-           if (err instanceof multer.MulterError) {
-               return res.status(500).json(err)
-           } else if (err) {
-               return res.status(500).json(err)
-           }
-      return res.status(200).send(req.file)
-
-    })
-
-});
 
 var upload = multer({ storage: storage }).single('file')
 
