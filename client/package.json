@@ -1,5 +1,4 @@
 {
-  "homepage": "http://ahmedElmaghr.github.io/mediaFrancaisDev",
   "proxy": "http://localhost:5000",
   "name": "world_map",
   "version": "0.1.0",
