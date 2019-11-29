@@ -46,9 +46,9 @@ app.post('/upload',function(req, res) {
     })
 
 });
+var PORT = process.env.PORT || 5000
+app.listen(PORT, function() {
 
-app.listen(5000, function() {
-
-    console.log('App running on port 5000');
+    console.log(`App running on port ${PORT}`);
 
 });
