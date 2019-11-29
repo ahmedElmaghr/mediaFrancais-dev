@@ -5,26 +5,40 @@ var multer = require('multer')
 const publicPath = path.join(__dirname, 'client','build');
 var cors = require('cors');
 
+
+
 PORT = process.env.PORT || 8000;
 app.use(cors())
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-    cb(null, 'public')
+    cb(null, 'client/public')
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' +file.originalname )
   }
 })
-
+if(process.env === "production" ){
+  app.use(express.static('client/build'));
+  
+  app.get('*',(req,res)=>{
+    console.log("res",res)
+    console.log("file sent",path.join(publicPath, 'index.html'))
+    res.sendFile(path.resolve(__dirname,"client","build","index.html"));
+  })
+}
+/*
 app.get('*', (req, res) => {
-  console.log("publicPath",publicPath);
+  console.log("res",res)
+  console.log("file sent",path.join(publicPath, 'index.html'))
   res.sendFile(path.join(publicPath, 'index.html'));
 });
+*/
 
 app.post('/upload',function(req, res) {
      console.log("call upload funct")
     upload(req, res, function (err) {
+      console.log("err",err);
            if (err instanceof multer.MulterError) {
                return res.status(500).json(err)
            } else if (err) {
