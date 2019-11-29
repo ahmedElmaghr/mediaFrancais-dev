@@ -1,5 +1,5 @@
 {
-  "proxy": "http://localhost:5000",
+  "proxy": "https://boiling-eyrie-83534.herokuapp.com/",
   "name": "world_map",
   "version": "0.1.0",
   "private": true,

@@ -1,23 +1,54 @@
-const express = require('express');
+var express = require('express');
+var app = express();
+var multer = require('multer')
+var cors = require('cors');
 const path = require('path');
 
-const app = express();
+app.use(cors())
 
-// Serve static files from the React app
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+    cb(null, 'public')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' +file.originalname )
+  }
+})
+
+
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-// Put all API endpoints under '/api'
-app.get('/api/show', (req, res) => {
-  console.log(`Hello word`);
-});
+
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
-app.get('*', (req, res) => {
+app.get('mediaFrancais', (req, res) => {
   res.sendFile(path.join(__dirname,'/client/build/','index.html'));
 });
+//just for test
+app.get('/show', (req, res) => {
+  console.log(`Hello word`);
+});
 
-const port = process.env.PORT || 5000;
-app.listen(port);
+//MULTER upload
+var upload = multer({ storage: storage }).single('file')
 
-console.log(`Password generator listening on ${port}`);
+app.post('/upload',function(req, res) {
+     
+    upload(req, res, function (err) {
+           if (err instanceof multer.MulterError) {
+               return res.status(500).json(err)
+           } else if (err) {
+               return res.status(500).json(err)
+           }
+      return res.status(200).send(req.file)
+
+    })
+
+});
+
+app.listen(5000, function() {
+
+    console.log('App running on port 5000');
+
+});
