@@ -7,7 +7,7 @@ var cors = require('cors');
 
 
 
-PORT = process.env.PORT || 8000;
+
 app.use(cors())
 
 var storage = multer.diskStorage({
@@ -19,12 +19,13 @@ var storage = multer.diskStorage({
   }
 })
 if(process.env === "production" ){
+  console.log("mode production");
   app.use(express.static('client/build'));
-  
+
   app.get('*',(req,res)=>{
     console.log("res",res)
     console.log("file sent",path.join(publicPath, 'index.html'))
-    res.sendFile(path.resolve(__dirname,"client","build","index.html"));
+    res.sendFile(path.join(publicPath, 'index.html'));
   })
 }
 /*
@@ -65,7 +66,7 @@ app.post('/upload',function(req, res) {
     })
 
 });
-
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, function() {
 
     console.log(`App running on port ${PORT}`);
