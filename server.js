@@ -35,12 +35,26 @@ app.get('*', (req, res) => {
 });
 */
 
-var upload = multer({ storage: storage }).single('file')
+var upload = multer({ storage: storage }).single('file');
+/*
+const router = express.Router();
+router.post('/upload',function(req, res) {
+  console.log("test") 
+  upload(req, res, function (err) {
+    upload(req, res, (err) => {
+      console.log("Request ---", req.body);
+      console.log("Request file ---", req.file);//Here you get file.
+      //Now do where ever you want to do
+      if(!err)
+         return res.send(200).end();
+  })
+});
+*/
 
 app.post('/upload',function(req, res) {
-    console.log("test") 
+    console.log("teeeeeeeeeeeeeeeeest") 
     upload(req, res, function (err) {
-      
+            console.log("erooooooooooooooooooooor",err);
            if (err instanceof multer.MulterError) {
                return res.status(500).json(err)
            } else if (err) {
@@ -51,6 +65,7 @@ app.post('/upload',function(req, res) {
     })
 
 });
+
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, function() {
 
