@@ -67,7 +67,7 @@ class MediaFrancaisContainer extends Component {
         </div>
       );
     }else{
-      console.log("Somethng goes wrong on render MEdiaFrancaisContainer");
+      console.log("Something goes wrong on render MediaFrancaisContainer");
     }
     return <div></div>;
   }

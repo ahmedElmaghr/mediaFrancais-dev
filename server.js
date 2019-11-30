@@ -52,9 +52,10 @@ router.post('/upload',function(req, res) {
 */
 
 app.post('/upload',function(req, res) {
-    console.log("teeeeeeeeeeeeeeeeest") 
+    console.log("uploaaaaaaaaaaaaaaaaaaaaaad") 
     upload(req, res, function (err) {
             console.log("erooooooooooooooooooooor",err);
+            console.log("ressssssssssssssssssssss",res)
            if (err instanceof multer.MulterError) {
                return res.status(500).json(err)
            } else if (err) {
