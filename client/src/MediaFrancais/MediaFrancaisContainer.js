@@ -74,13 +74,19 @@ class MediaFrancaisContainer extends Component {
     onClickHandler = () => {
       const data = new FormData() 
       data.append('file', this.state.selectedFile)
-      axios.post("http://localhost:8000/upload", data, { // receive two parameter endpoint url ,form data 
+      const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    };
+      axios.post("/upload", data, { // receive two parameter endpoint url ,form data 
     })
     .then(res => { // then print response status
-      /*if (res.status !== 200) {
+      if (res.status !== 200) {
         console.log(`There was a problem: ${res.statusText}`);
         return;
-      }*/
+      }
+      alert("The file"+res.data.filename+" is successfully uploaded");
       if(res.data.filename !=null){
         this.readMediaFile(res.data.filename);
       }    
