@@ -127,7 +127,8 @@ class MediaFrancaisContainer extends Component {
   }
 
   readMediaFile = data => {
-    d3.tsv(data).then(response => {
+    d3.tsv(data).then((response,err) => {
+      console.log("response",response);
       this.setState({
         medias_francais: response,
         media_filtred: response
