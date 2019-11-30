@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/mediaFrancaisDev/static/css/main.8cc8da5a.chunk.css",
-    "main.js": "/mediaFrancaisDev/static/js/main.eb2e3388.chunk.js",
-    "main.js.map": "/mediaFrancaisDev/static/js/main.eb2e3388.chunk.js.map",
-    "runtime-main.js": "/mediaFrancaisDev/static/js/runtime-main.f8328208.js",
-    "runtime-main.js.map": "/mediaFrancaisDev/static/js/runtime-main.f8328208.js.map",
-    "static/css/2.17e5ed98.chunk.css": "/mediaFrancaisDev/static/css/2.17e5ed98.chunk.css",
-    "static/js/2.4275492b.chunk.js": "/mediaFrancaisDev/static/js/2.4275492b.chunk.js",
-    "static/js/2.4275492b.chunk.js.map": "/mediaFrancaisDev/static/js/2.4275492b.chunk.js.map",
-    "index.html": "/mediaFrancaisDev/index.html",
-    "precache-manifest.985650ad6243e724d04b88a26160d1bd.js": "/mediaFrancaisDev/precache-manifest.985650ad6243e724d04b88a26160d1bd.js",
-    "service-worker.js": "/mediaFrancaisDev/service-worker.js",
-    "static/css/2.17e5ed98.chunk.css.map": "/mediaFrancaisDev/static/css/2.17e5ed98.chunk.css.map",
-    "static/css/main.8cc8da5a.chunk.css.map": "/mediaFrancaisDev/static/css/main.8cc8da5a.chunk.css.map",
-    "static/media/countries.tsv": "/mediaFrancaisDev/static/media/countries.9f4f5047.tsv",
-    "static/media/medias_francais_mock.tsv": "/mediaFrancaisDev/static/media/medias_francais_mock.d6786590.tsv",
-    "static/media/relations_medias_francais.tsv": "/mediaFrancaisDev/static/media/relations_medias_francais.d49ff9ff.tsv"
+    "main.css": "/static/css/main.8cc8da5a.chunk.css",
+    "main.js": "/static/js/main.bf13f93e.chunk.js",
+    "main.js.map": "/static/js/main.bf13f93e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.d46fe643.js",
+    "runtime-main.js.map": "/static/js/runtime-main.d46fe643.js.map",
+    "static/css/2.17e5ed98.chunk.css": "/static/css/2.17e5ed98.chunk.css",
+    "static/js/2.4275492b.chunk.js": "/static/js/2.4275492b.chunk.js",
+    "static/js/2.4275492b.chunk.js.map": "/static/js/2.4275492b.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.dc403f6c9f82f3533965ee25a0a88562.js": "/precache-manifest.dc403f6c9f82f3533965ee25a0a88562.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.17e5ed98.chunk.css.map": "/static/css/2.17e5ed98.chunk.css.map",
+    "static/css/main.8cc8da5a.chunk.css.map": "/static/css/main.8cc8da5a.chunk.css.map",
+    "static/media/countries.tsv": "/static/media/countries.9f4f5047.tsv",
+    "static/media/medias_francais_mock.tsv": "/static/media/medias_francais_mock.d6786590.tsv",
+    "static/media/relations_medias_francais.tsv": "/static/media/relations_medias_francais.d49ff9ff.tsv"
   },
   "entrypoints": [
-    "static/js/runtime-main.f8328208.js",
+    "static/js/runtime-main.d46fe643.js",
     "static/css/2.17e5ed98.chunk.css",
     "static/js/2.4275492b.chunk.js",
     "static/css/main.8cc8da5a.chunk.css",
-    "static/js/main.eb2e3388.chunk.js"
+    "static/js/main.bf13f93e.chunk.js"
   ]
 }

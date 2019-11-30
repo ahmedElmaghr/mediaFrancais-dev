@@ -66,6 +66,8 @@ class MediaFrancaisContainer extends Component {
           ></MediaFrancaisView>
         </div>
       );
+    }else{
+      console.log("Somethng goes wrong on render MEdiaFrancaisContainer");
     }
     return <div></div>;
   }
@@ -127,6 +129,7 @@ class MediaFrancaisContainer extends Component {
   }
 
   readMediaFile = data => {
+    console.log("data read",data)
     d3.tsv(data).then((response,err) => {
       console.log("response",response);
       this.setState({
