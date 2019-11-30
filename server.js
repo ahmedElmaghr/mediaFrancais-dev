@@ -21,7 +21,7 @@ if(process.env.NODE_ENV === "production" ){
   console.log("mode production");
   app.use(express.static('client/build'));
   const path = require('path');
-  app.get('/media',(req,res)=>{
+  app.get('*',(req,res)=>{
     //console.log("res",res)
     console.log("file sent",path.resolve(__dirname, 'client', 'build', 'index.html'))
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
