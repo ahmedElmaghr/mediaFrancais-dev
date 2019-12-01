@@ -30,7 +30,7 @@ AWS.config.setPromisesDependency(bluebird);
 // create S3 instance
 const s3 = new AWS.S3();
 
-
+//"https://worldmap-ocp.s3.amazonaws.com"
 // Define POST route
 app.post('/test-upload', (request, response) => {
   console.log("call /test-upload from server")
