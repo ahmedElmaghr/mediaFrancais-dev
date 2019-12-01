@@ -1,5 +1,5 @@
 {
-  "proxy" : "http://localhost:8000",
+  "proxy" : "http://localhost:9000",
   "name": "world_map",
   "version": "0.1.0",
   "private": true,

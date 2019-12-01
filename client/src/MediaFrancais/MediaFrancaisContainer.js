@@ -72,28 +72,60 @@ class MediaFrancaisContainer extends Component {
     return <div></div>;
   }
 
+  onClickHandlernew = (event) => {
+    
+  }
 
-    onClickHandler = () => {
-      const data = new FormData() 
-      data.append('file', this.state.selectedFile)
-      const config = {
+    onClickHandler= (event) => {
+      //event.preventDefault();
+      const formData = new FormData() 
+      formData.append('file', this.state.selectedFile)
+     // var options = { headers: { 'Content-Type': fileType, 'x-amz-acl': 'public-read' } };
+      axios.post("/test-upload", formData, {
         headers: {
-            'content-type': 'multipart/form-data'
-        }
-    };
-      axios.post("/upload", data, { // receive two parameter endpoint url ,form data 
+          'Content-Type': 'multipart/form-data',
+          'x-amz-acl': 'public-read',
+        } // receive two parameter endpoint url ,form data 
     })
     .then(res => { // then print response status
+      console.log("call the tst_upload");
       if (res.status !== 200) {
         console.log(`There was a problem: ${res.statusText}`);
         return;
       }
-      alert("The file"+res.data.filename+" is successfully uploaded");
-      if(res.data.filename !=null){
-        this.readMediaFile(res.data.filename);
-      }    
-    })
+      const fileUploaded = res.data.Location;
+      if(fileUploaded !=null){
+        alert("The file is successfully uploaded under ",fileUploaded);
+        this.readMediaFile(fileUploaded);
+      }else{
+        alert("file was not uploaded correctly, fileUploaded is empty");
+      }
+
+    }).catch(error => {
+      console.log("error with axios post",error);
+    });
     }
+
+/*
+    submitFile = (event) => {
+      event.preventDefault();
+      const formData = new FormData();
+      formData.append('file', this.state.file[0]);
+      axios.post(`/test-upload`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(response => {
+        // handle your response;
+      }).catch(error => {
+        // handle your error
+      });
+    }
+
+*/
+
+
+
       
     uploadFile = event => {
         var file = event.target.files[0];
@@ -129,7 +161,7 @@ class MediaFrancaisContainer extends Component {
   }
 
   readMediaFile = data => {
-    console.log("data read",data)
+    console.log("read media file uri",data)
     d3.tsv(data).then((response,err) => {
       console.log("error",err);
       console.log("response",response);
