@@ -19,8 +19,8 @@ app.use(allowCrossDomain);
 */
 // configure the keys for accessing AWS
 AWS.config.update({
-  accessKeyId : 'AKIAXRYQHWPRH6FP64NK',
-  secretAccessKey : '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'
+  accessKeyId : '',
+  secretAccessKey : ''
 });
 
 
