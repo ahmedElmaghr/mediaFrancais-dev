@@ -10,6 +10,8 @@ import DorpDownView from "../Components/DropDownView";
 import FileUpload from "../Components/FileUpload";
 
 class MediaFrancaisContainer extends Component {
+
+
   constructor(props) {
     super(props);
     this.state = {
@@ -80,8 +82,7 @@ class MediaFrancaisContainer extends Component {
       //event.preventDefault();
       const formData = new FormData() 
       formData.append('file', this.state.selectedFile)
-     // var options = { headers: { 'Content-Type': fileType, 'x-amz-acl': 'public-read' } };
-      axios.post("/test-upload", formData, {
+      axios.post("/upload_cloud", formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'x-amz-acl': 'public-read',
@@ -106,27 +107,6 @@ class MediaFrancaisContainer extends Component {
     });
     }
 
-/*
-    submitFile = (event) => {
-      event.preventDefault();
-      const formData = new FormData();
-      formData.append('file', this.state.file[0]);
-      axios.post(`/test-upload`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }).then(response => {
-        // handle your response;
-      }).catch(error => {
-        // handle your error
-      });
-    }
-
-*/
-
-
-
-      
     uploadFile = event => {
         var file = event.target.files[0];
 

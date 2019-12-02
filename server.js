@@ -1,26 +1,18 @@
+//COnfigurartion stockage Cloud AWS S3 Amazon
 const express = require('express');
+var multer = require('multer')
 const app = express();
 const AWS = require('aws-sdk');
 const fs = require('fs');
 const fileType = require('file-type');
 const bluebird = require('bluebird');
 const multiparty = require('multiparty');
-var cors = require('cors');
-/*
-app.use(cors);
-app.options('*',cors);
-var allowCrossDomain = function(req,res,next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();  
-}
-app.use(allowCrossDomain);
-*/
+
+
 // configure the keys for accessing AWS
 AWS.config.update({
-  accessKeyId : '',
-  secretAccessKey : ''
+  accessKeyId : process.env.S3AccessKeyID,
+  secretAccessKey : process.env.S3SecretAccessKey,
 });
 
 
@@ -30,15 +22,15 @@ AWS.config.setPromisesDependency(bluebird);
 // create S3 instance
 const s3 = new AWS.S3();
 
-//"https://worldmap-ocp.s3.amazonaws.com"
 // Define POST route
-app.post('/test-upload', (request, response) => {
+app.post('/upload_cloud', (request, response) => {
   console.log("call /test-upload from server")
   const form = new multiparty.Form();
     form.parse(request, async (error, fields, files) => {
       if (error) throw new Error(error);
       try {
       const path = files.file[0].path;
+      //Updloading files 
       const data = await uploadFile(path);
       console.log("data",data);
       return response.status(200).send(data);
@@ -81,8 +73,32 @@ if(process.env.NODE_ENV === "production" ){
   })
 }
 
+//LOCAL
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+  cb(null, 'client/public')
+},
+filename: function (req, file, cb) {
+  cb(null, Date.now() + '-' +file.originalname )
+}
+})
+
+var uploadLocal = multer({ storage: storage }).single('file');
+
+app.post('/upload_localy',function(req, res) {
+    console.log("call server upload post") 
+    uploadLocal(req, res, function (err) {
+           if (err instanceof multer.MulterError) {
+               return res.status(500).json(err)
+           } else if (err) {
+               return res.status(500).json(err)
+           }
+      return res.status(200).send(req.file)
+
+    })
+
+});
+
 
 app.listen(process.env.PORT || 9000);
 console.log('Server up and running...');
-
-//test('test.tsv')
