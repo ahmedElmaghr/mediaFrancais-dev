@@ -82,7 +82,7 @@ class MediaFrancaisContainer extends Component {
       //event.preventDefault();
       const formData = new FormData() 
       formData.append('file', this.state.selectedFile)
-      axios.post("/upload_cloud", formData, {
+      axios.post("/upload_localy", formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'x-amz-acl': 'public-read',
@@ -94,7 +94,9 @@ class MediaFrancaisContainer extends Component {
         console.log(`There was a problem: ${res.statusText}`);
         return;
       }
-      const fileUploaded = res.data.Location;
+      //const fileUploaded = res.data.Location;
+      const fileUploaded = res.data.filename;
+      console.log(fileUploaded);
       if(fileUploaded !=null){
         alert("The file is successfully uploaded under ",fileUploaded);
         this.readMediaFile(fileUploaded);

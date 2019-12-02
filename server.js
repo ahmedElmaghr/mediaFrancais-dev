@@ -8,13 +8,11 @@ const fileType = require('file-type');
 const bluebird = require('bluebird');
 const multiparty = require('multiparty');
 
-
 // configure the keys for accessing AWS
 AWS.config.update({
-  accessKeyId : process.env.S3AccessKeyID,
-  secretAccessKey : process.env.S3SecretAccessKey,
+  accessKeyId : process.env.REACT_APP_S3AccessKeyID,
+  secretAccessKey : process.env.REACT_APP_S3SecretAccessKey,
 });
-
 
 // configure AWS to work with promises
 AWS.config.setPromisesDependency(bluebird);
@@ -24,7 +22,6 @@ const s3 = new AWS.S3();
 
 // Define POST route
 app.post('/upload_cloud', (request, response) => {
-  console.log("call /test-upload from server")
   const form = new multiparty.Form();
     form.parse(request, async (error, fields, files) => {
       if (error) throw new Error(error);
