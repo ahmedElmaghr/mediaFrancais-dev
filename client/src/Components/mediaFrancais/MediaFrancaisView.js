@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import React, { PureComponent  } from "react";
 import { merge} from "topojson-client"
-import {StringUtils} from "../Utils/StringUtils.js"
+import {StringUtils} from "../../Utils/StringUtils.js"
 import "./MediaFrancaisView.css"
 
 export default class MediaFrancaisView extends PureComponent {
@@ -20,7 +20,6 @@ export default class MediaFrancaisView extends PureComponent {
                  borderColor = "red";
 
                  constructor(props) {
-                   console.log("call the constructor MediaFrancaisView");
                    super(props);
                    this.state = {
                      medias_francais: [],
@@ -29,13 +28,10 @@ export default class MediaFrancaisView extends PureComponent {
                  }
 
                  componentWillReceiveProps() {
-                   console.log(
-                     "call the componentWillReceiveProps MediaFrancaisView"
-                   );
+
                  }
 
                  componentWillMount() {
-                   console.log("componentWillMount");
                    //Draw svg Wrapper
                    var svg = this.drawSvgWrapper();
                    var gGlobal = svg.append("g").attr("id", "gWrapper");
@@ -67,11 +63,9 @@ export default class MediaFrancaisView extends PureComponent {
                      .attr("fill", "rgba(44, 130, 201, 1)");
                  };
                  componentDidMount() {
-                   console.log("call the componentDidMount");
                  }
 
                  componentDidUpdate() {
-                   console.log("call didComponentUpdate");
                    this.setState({
                      ...this.setState(),
                      medias_francais: this.props.media_filtred
@@ -80,21 +74,22 @@ export default class MediaFrancaisView extends PureComponent {
 
                  render() {
                    this.initMarkersAndLinks();
-                   console.log("call MediaFrancais render");
                    const medias_francais = this.state.medias_francais;
                    const {
                      worldData,
                      relations_medias_francais,
                      countries
                    } = this.props;
+                   if(this.props.activated){
                    if (worldData.length > 0) {
                      this.drawMediaAndConnexions(
                        medias_francais,
                        relations_medias_francais,
                        countries
                      );
-                     this.showMarkersOnFirstOrder();
-                   }
+                     this.showMarkersOnFirstOrder();                   
+                  }
+                }
                    return <div></div>;
                  }
 
@@ -450,7 +445,6 @@ export default class MediaFrancaisView extends PureComponent {
                  };
 
                  circleOnClick = event => {
-                   console.log("event", event);
                  };
 
                  //Projection and path calculator

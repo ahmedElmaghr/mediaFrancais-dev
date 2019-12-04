@@ -10,7 +10,9 @@ class DorpDownView extends Component {
   
   
   render() {
+    if(this.props.activated){
     return (
+
       <div className="dropdown">
         <select id="mySelect" className="dropbtn" onChange={e => {this.props.onChange(e.target.value);
           }}
@@ -23,7 +25,10 @@ class DorpDownView extends Component {
         </select>
       </div>
     );
+  }else{
+    return <div></div>
   }
+}
 }
 
 export default DorpDownView;

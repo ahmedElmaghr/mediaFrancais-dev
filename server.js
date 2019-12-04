@@ -1,12 +1,87 @@
-//COnfigurartion stockage Cloud AWS S3 Amazon
 const express = require('express');
 var multer = require('multer')
+const logger = require('morgan');
 const app = express();
 const AWS = require('aws-sdk');
 const fs = require('fs');
-const fileType = require('file-type');
 const bluebird = require('bluebird');
 const multiparty = require('multiparty');
+const cors = require('cors');
+const CACHE_FILE_URL = "./client/src/db/cache/my.db";
+
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+var Datastore = require('nedb');
+//var users = new Datastore({ filename: `${process.env.TMP}` });
+
+var users = new Datastore({ filename: CACHE_FILE_URL, autoload: true });
+
+app.post('/db/persist', (req, res) => {  
+  
+  fs.writeFile(CACHE_FILE_URL, '', function(){console.log('init cache done')})
+  var data = {
+    data : req.body.data
+  };
+  users.insert(data, function(err, doc) {
+    if(err){
+      return res.status(500).json(err);
+    }
+  });
+  
+  return res.status(200).send("file  successfully cached");
+
+});
+
+app.get("/db/all",(req,res)=>{
+  console.log("/db/all");
+  users.find({}, function(err, docs) {
+    console.log("docs",docs);
+    docs.forEach(function(d) {
+        console.log('Found user:', d.name);
+    });
+});
+
+});
+
+if(process.env.NODE_ENV === "production" ){
+  console.log("mode production");
+  app.use(express.static('client/build'));
+  const path = require('path');
+  app.get('*',(req,res)=>{
+    //console.log("res",res)
+    console.log("file sent",path.resolve(__dirname, 'client', 'build', 'index.html'))
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  })
+}
+
+//LOCAL
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+  cb(null, 'client/public')
+},
+filename: function (req, file, cb) {
+  cb(null, Date.now() + '-' +file.originalname )
+}
+})
+
+var uploadLocal = multer({ storage: storage }).single('file');
+
+app.post('/upload_localy',function(req, res) {
+    console.log("call server upload post") 
+    uploadLocal(req, res, function (err) {
+           if (err instanceof multer.MulterError) {
+               return res.status(500).json(err)
+           } else if (err) {
+               return res.status(500).json(err)
+           }
+      return res.status(200).send(req.file)
+
+    })
+
+});
 
 // configure the keys for accessing AWS
 AWS.config.update({
@@ -58,44 +133,6 @@ const uploadFile = (path) => {
       console.log(`File uploaded successfully. ${data.Location}`);
   }).promise();
 };
-
-if(process.env.NODE_ENV === "production" ){
-  console.log("mode production");
-  app.use(express.static('client/build'));
-  const path = require('path');
-  app.get('*',(req,res)=>{
-    //console.log("res",res)
-    console.log("file sent",path.resolve(__dirname, 'client', 'build', 'index.html'))
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  })
-}
-
-//LOCAL
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-  cb(null, 'client/public')
-},
-filename: function (req, file, cb) {
-  cb(null, Date.now() + '-' +file.originalname )
-}
-})
-
-var uploadLocal = multer({ storage: storage }).single('file');
-
-app.post('/upload_localy',function(req, res) {
-    console.log("call server upload post") 
-    uploadLocal(req, res, function (err) {
-           if (err instanceof multer.MulterError) {
-               return res.status(500).json(err)
-           } else if (err) {
-               return res.status(500).json(err)
-           }
-      return res.status(200).send(req.file)
-
-    })
-
-});
-
 
 app.listen(process.env.PORT || 9000);
 console.log('Server up and running...');

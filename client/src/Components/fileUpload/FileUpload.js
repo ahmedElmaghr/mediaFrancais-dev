@@ -5,11 +5,11 @@ class FileUpload extends PureComponent {
 
     constructor(props) {
         super(props);
-        this.state = {value: ''};
     
       }
     
   render() {
+    if(this.props.activated){
     return (
         <div class="input-group">
           <div class="input-group-prepend">
@@ -23,6 +23,9 @@ class FileUpload extends PureComponent {
           </div>
         </div>
     );
+  }else{
+    return <div></div>
+  }
   }
   
 
