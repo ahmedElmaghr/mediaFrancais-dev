@@ -17,7 +17,7 @@ export default class MediaFrancaisView extends PureComponent {
                    y: -40
                  };
                  viewBox = "0 0 800 450";
-                 borderColor = "red";
+                 borderColor = "white";
 
                  constructor(props) {
                    super(props);
@@ -239,9 +239,9 @@ export default class MediaFrancaisView extends PureComponent {
                  getNodeColor = (id, media) => {
                    var childsCount = media.filter(d => d.id === id).length;
                    if (childsCount == 0) {
-                     return "rgba(65, 131, 215, 1)";
-                   } else {
                      return "rgba(214, 69, 65, 1)";
+                   } else {
+                     return "rgba(65, 131, 215, 1)";
                    }
                  };
 
@@ -409,6 +409,7 @@ export default class MediaFrancaisView extends PureComponent {
                      .style("stroke", d => this.colorPath(d))
                      .style("stroke-width", 0.5)
                      .style("fill", "none")
+                     .style("opacity",0.35)
                      .datum(d => {
                        return [d.origine, d.cible];
                      })

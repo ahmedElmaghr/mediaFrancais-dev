@@ -6,7 +6,6 @@ import medias_francais_mock from "../data/medias_francais_mock.tsv";
 import relations_medias_francais_mock from "../data/relations_medias_francais.tsv";
 import MediaFrancaisView from "../../Components/mediaFrancais/MediaFrancaisView";
 import DorpDownView from "../../Components/dropDown/DropDownView";
-import FileUpload from "../../Components/fileUpload/FileUpload";
 
 class MediaFrancaisContainer extends Component {
   constructor(props) {
