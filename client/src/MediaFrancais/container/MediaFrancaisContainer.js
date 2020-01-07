@@ -94,7 +94,7 @@ class MediaFrancaisContainer extends Component {
     const formData = new FormData();
     formData.append("file", this.state.selectedFile);
     axios
-      .post("/upload_localy", formData, {
+      .post("/api/upload_localy", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           "x-amz-acl": "public-read"

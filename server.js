@@ -68,8 +68,8 @@ filename: function (req, file, cb) {
 })
 
 var uploadLocal = multer({ storage: storage }).single('file');
-
-app.post('/upload_localy',function(req, res) {
+//
+app.post('/api/upload_localy',function(req, res) {
     console.log("call server upload post") 
     uploadLocal(req, res, function (err) {
            if (err instanceof multer.MulterError) {
