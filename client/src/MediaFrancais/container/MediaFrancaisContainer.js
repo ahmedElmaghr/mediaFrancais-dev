@@ -125,7 +125,7 @@ class MediaFrancaisContainer extends Component {
     d3.tsv(fileUploaded)
       .then(async (response) => {
         var data = { data: response };
-        await axios.post("/db/persist", data).then(() => {});
+        await axios.post("/api/db/persist", data).then(() => {});
       })
       .catch(error => {
         console.log("error with axios post /persist", error);
