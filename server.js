@@ -134,5 +134,5 @@ const uploadFile = (path) => {
   }).promise();
 };
 
-app.listen(process.env.PORT || 9000);
+app.listen(process.env.PORT || 4000);
 console.log('Server up and running...');
