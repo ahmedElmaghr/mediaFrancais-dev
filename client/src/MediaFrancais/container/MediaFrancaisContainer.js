@@ -90,55 +90,15 @@ class MediaFrancaisContainer extends Component {
   };
 
   onClickHandler = () => {
-    //event.preventDefault();
-    const formData = new FormData();
-    formData.append("file", this.state.selectedFile);
-    axios
-      .post("/api/upload_localy", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          "x-amz-acl": "public-read"
-        } // receive two parameter endpoint url ,form data
-      })
-      .then(res => {
-        // then print response status
-        if (res.status !== 200) {
-          console.log(`There was a problem: ${res.statusText}`);
-          return;
-        }
-        //const fileUploaded = res.data.Location;
-        const fileUploaded = res.data.filename;
-        if (fileUploaded != null) {
-          alert("The file is successfully uploaded under ", fileUploaded);
-          this.saveFileToCache(fileUploaded);
-          this.readMediaFile(fileUploaded);
-        } else {
-          alert("file was not uploaded correctly, fileUploaded is empty");
-        }
-      })
-      .catch(error => {
-        console.log("error with axios post", error);
-      });
-  };
+    console.log("clicked");
+    var mediafrancais = 'mediafrancais';
+    axios.get(`/getAll?table=${mediafrancais}`).then(res=>{
 
-  saveFileToCache = fileUploaded => {
-    d3.tsv(fileUploaded)
-      .then(async (response) => {
-        var data = { data: response };
-        await axios.post("/api/db/persist", data).then(() => {});
-      })
-      .catch(error => {
-        console.log("error with axios post /persist", error);
-      });
-  };
+      console.log("call getAll response",res.data);
+    }
 
-  uploadFile = event => {
-    var file = event.target.files[0];
-
-    this.setState({
-      selectedFile: file
-    });
-  };
+    )
+  }
 
   changeTheme = theme => {
     if (theme == 0) {
