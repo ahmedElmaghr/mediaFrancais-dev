@@ -4,7 +4,8 @@ import * as d3 from "d3";
 import axios from 'axios';
 import countries from "../data/countries.tsv";
 import cache from "../../db/cache/my.db";
-
+import { CountryDb } from '../../db/MediaDbLayer/CountyDb';
+import { RelationMediaFrDb } from '../../db/MediaDbLayer/RelationMediaFrDb';
 import relations_medias_francais_mock from "../data/relations_medias_francais.tsv";
 import MediaFrancaisView from "../../Components/mediaFrancais/MediaFrancaisView";
 import DorpDownView from "../../Components/dropDown/DropDownView";
@@ -28,23 +29,23 @@ class MediaFrancaisContainer extends Component {
   }
 
   render() {
-    var view = this.constructView(fileUpload,dropdown,mediaFrancaisView)
+    var view = this.constructView(fileUpload, dropdown, mediaFrancaisView)
     var fileUpload = view[0];
     var dropdown = view[1];
     var mediaFrancaisView = view[2];
-      return (
-        <div>
-          {fileUpload}
-          {dropdown}
-          {mediaFrancaisView}
-        </div>
-      );
+    return (
+      <div>
+        {fileUpload}
+        {dropdown}
+        {mediaFrancaisView}
+      </div>
+    );
 
   }
 
   constructView = () => {
     var fileUpload, dropdown, mediaFrancaisView;
-    const {worldData,jsonData,medias_francais,media_filtred,relations_medias_francais,countries} = this.state;
+    const { worldData, jsonData, medias_francais, media_filtred, relations_medias_francais, countries } = this.state;
     fileUpload = (
       <FileUpload
         uploadFile={e => {
@@ -90,14 +91,7 @@ class MediaFrancaisContainer extends Component {
   };
 
   onClickHandler = () => {
-    console.log("clicked");
-    var mediafrancais = 'mediafrancais';
-    axios.get(`/getAll?table=${mediafrancais}`).then(res=>{
-
-      console.log("call getAll response",res.data);
-    }
-
-    )
+   console.log("clicked");
   }
 
   changeTheme = theme => {
@@ -118,24 +112,21 @@ class MediaFrancaisContainer extends Component {
     }
   };
 
+
   loadDataForMediaFrancais() {
     if (cache != null) {
       this.readMediaFileNew(cache);
     }
-    //this.readMediaFile(medias_francais_mock);
     this.readRelationFile();
     this.readCountries();
     this.updateWordMap();
+
+    //Load data from SQL think about a pattern to use her
+
   }
   readMediaFileNew = url => {
     //request to server DB
     console.log("readMediaFileNew", url);
-    /* TODO 
-    axios.get("/db/all").then((err, doc) => {
-      console.log("response", doc);
-    });
-    */
-
     d3.json(url).then((response, err) => {
       console.log("response", response.data);
       if (err) {
@@ -163,19 +154,35 @@ class MediaFrancaisContainer extends Component {
   };
 
   readRelationFile = () => {
-    d3.tsv(relations_medias_francais_mock).then(response => {
+    //Read country from cerfmedia.country
+    var allrelationMediaFr = RelationMediaFrDb.getAllRelationMediaFrDb();
+    allrelationMediaFr.then(response => {
+      console.log("new media francais",response.data);
       this.setState({
-        relations_medias_francais: response
+        relations_medias_francais: this.buildMediaFrancais(response.data)
+      });
+    })
+    d3.tsv(relations_medias_francais_mock).then(response => {
+      console.log("old media francais" , response);
+      this.setState({
+        relations_medias_francais_mock:response
       });
     });
   };
 
+  buildMediaFrancais = (data) => {
+    return data;
+  }
+
   readCountries = () => {
-    d3.tsv(countries).then(response => {
+    //Read country from cerfmedia.country
+    var allCountryPromise = CountryDb.getAllCountry();
+    allCountryPromise.then(response => {
+      console.log('response from view', response ? response.data : "undefined");
       this.setState({
-        countries: response
+        countries: response.data
       });
-    });
+    })
   };
 
   updateWordMap() {

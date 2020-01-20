@@ -1,4 +1,4 @@
 client/build
 client/public
 node_modules
-server/
+serverTest/

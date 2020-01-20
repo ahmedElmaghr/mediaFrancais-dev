@@ -256,7 +256,6 @@ export default class MediaFrancaisView extends PureComponent {
 
                  drawCnx = (g, relations, countries) => {
                    //build links
-
                    var links = this.buildLinks(relations, countries);
                    this.addLinks(g, links);
                  };
@@ -409,6 +408,7 @@ export default class MediaFrancaisView extends PureComponent {
                      .style("stroke", d => this.colorPath(d))
                      .style("stroke-width", 0.5)
                      .style("fill", "none")
+                     .attr("opacity",0.7)
                      .datum(d => {
                        return [d.origine, d.cible];
                      })
