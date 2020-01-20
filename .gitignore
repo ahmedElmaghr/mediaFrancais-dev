@@ -1,2 +1,4 @@
-client/buid
+client/build
+client/public
 node_modules
+server/
