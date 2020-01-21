@@ -2,3 +2,4 @@ client/build
 client/public
 node_modules
 serverTest/
+.vscode/launch.json

@@ -1,8 +1,8 @@
 import * as d3 from "d3";
-import React, { PureComponent  } from "react";
-import { merge} from "topojson-client"
-import {StringUtils} from "../../Utils/StringUtils.js"
-import "./MediaFrancaisView.css"
+import React, { PureComponent } from "react";
+import { merge } from "topojson-client";
+import { StringUtils } from "../../Utils/StringUtils.js";
+import "./MediaFrancaisView.css";
 
 export default class MediaFrancaisView extends PureComponent {
                  //Constantes
@@ -25,10 +25,6 @@ export default class MediaFrancaisView extends PureComponent {
                      medias_francais: [],
                      isMapLoaded: false
                    };
-                 }
-
-                 componentWillReceiveProps() {
-
                  }
 
                  componentWillMount() {
@@ -62,31 +58,17 @@ export default class MediaFrancaisView extends PureComponent {
                      .attr("stroke-width", 0.05)
                      .attr("fill", "rgba(44, 130, 201, 1)");
                  };
-                 componentDidMount() {
-                 }
-
-                 componentDidUpdate() {
-                   this.setState({
-                     ...this.setState(),
-                     medias_francais: this.props.media_filtred
-                   });
-                 }
 
                  render() {
+                  console.log("MFV render");
+
                    this.initMarkersAndLinks();
-                   const medias_francais = this.state.medias_francais;
-                   const {
-                     worldData,
-                     relations_medias_francais,
-                     countries
-                   } = this.props;
+                   const medias_francais = this.props.media_filtred;
+                   const relations_medias_francais = this.props.relations_filtered;
+                   const {worldData} = this.props;
                    if(this.props.activated){
                    if (worldData.length > 0) {
-                     this.drawMediaAndConnexions(
-                       medias_francais,
-                       relations_medias_francais,
-                       countries
-                     );
+                     this.drawMediaAndConnexions( medias_francais,relations_medias_francais);
                      this.showMarkersOnFirstOrder();                   
                   }
                 }
@@ -102,20 +84,12 @@ export default class MediaFrancaisView extends PureComponent {
                    d3.select(".markers").raise();
                  };
                  //Create the world map
-                 drawMediaAndConnexions = (
-                   medias_francais,
-                   relations_medias_francais,
-                   countries
-                 ) => {
+                 drawMediaAndConnexions = (medias_francais,relations_medias_francais) => {
                    var gGlobal = d3.select("#gWrapper");
                    //Draw Medias
                    this.drawMediaPosition(gGlobal, medias_francais);
                    //Draw connexions
-                   this.drawCnx(
-                     gGlobal,
-                     relations_medias_francais,
-                     countries
-                   );
+                   this.drawCnx(gGlobal,relations_medias_francais);
                    //add zoom
                    this.addZoom(gGlobal);
                  };
@@ -175,22 +149,19 @@ export default class MediaFrancaisView extends PureComponent {
 
                  //Add Markers Function
                  drawMediaPosition = (node, medias_francais) => {
-                   const { relations_medias_francais, countries } = this.props;
+                   const { relations_medias_francais} = this.props;
                    var markers = node.append("g").attr("class", "markers");
-                   var media_francais_filtre = medias_francais.filter(d =>
-                     StringUtils.isNotEmpty(d.country)
-                   );
                    markers
                      .selectAll("circle")
-                     .data(media_francais_filtre)
+                     .data(medias_francais)
                      .enter()
                      .append("circle")
                      .attr("key", d => `marker-${d.id}`)
                      .attr("cx", d => {
-                       return this.getCx(d, countries);
+                       return this.getCx(d);
                      })
                      .attr("cy", d => {
-                       return this.getCy(d, countries);
+                       return this.getCy(d);
                      })
                      .attr("r", d => {
                        return (
@@ -207,30 +178,24 @@ export default class MediaFrancaisView extends PureComponent {
                      .attr("stroke", "#FFFFFF")
                      .attr("class", "marker")
                      .append("title")
-                     .text(e => this.circleOnHover(e));
+                     .text(d => this.circleOnHover(d));
 
                    return markers;
                  };
 
-                 getCx = (d, countries) => {
-                   var country = countries.filter(
-                     c => c.country == d.country
-                   )[0];
-                   if (StringUtils.isNotEmpty(country)) {
-                     var y = country.latitude;
-                     var x = country.longitude;
-                     var coordinate = [y, x];
+                 getCx = (d) => {
+                   if (StringUtils.isNotEmpty(d)) {
+                     var x = d.latitude;
+                     var y = d.longitude;
+                     var coordinate = [x, y];
                      return this.projection()(coordinate)[0];
                    }
                  };
 
-                 getCy = (d, countries) => {
-                   var country = countries.filter(
-                     c => c.country == d.country
-                   )[0];
-                   if (StringUtils.isNotEmpty(country)) {
-                     var x = country.latitude;
-                     var y = country.longitude;
+                 getCy = (d) => {
+                   if (StringUtils.isNotEmpty(d)) {
+                    var x = d.latitude;
+                    var y = d.longitude;
                      var coordinate = [x, y];
                      return this.projection()(coordinate)[1];
                    }
@@ -247,48 +212,44 @@ export default class MediaFrancaisView extends PureComponent {
 
                  //get child
                  getChildCount = (nom, media) => {
-                   var childsCount = media.filter(d => d.origine == nom).length;
+                   var childsCount = media.filter(d => d.origine_name == nom).length;
                    if (childsCount === 0) {
                      return 1;
                    }
                    return childsCount;
                  };
 
-                 drawCnx = (g, relations, countries) => {
+                 drawCnx = (g, relations) => {
                    //build links
-                   var links = this.buildLinks(relations, countries);
+                   var links = this.buildLinks(relations);
                    this.addLinks(g, links);
                  };
 
                  //build links
-                 buildLinks = (relations, countries) => {
+                 buildLinks = (relations) => {
                    var links = [];
+                   if(relations){
                    relations.forEach((d, i) => {
-                     var link = this.createLinkObject(d, countries);
+                     var link = this.createLinkObject(d);
                      //add new link object
                      if (this.validateLink(link)) {
                        links.push(link);
                      }
                    });
+                  }
                    return links;
                  };
 
                  //create a link DTO
-                 createLinkObject = (d, countries) => {
+                 createLinkObject = (d) => {
                    var link = {
                      origine: {
                        value: d.origine,
-                       coordinate: this.getCoordinateByEntity(
-                         countries,
-                         d.origine
-                       )
+                       coordinate: [d.origin_y,d.origin_x]
                      },
                      cible: {
                        value: d.cible,
-                       coordinate: this.getCoordinateByEntity(
-                         countries,
-                         d.cible
-                       )
+                       coordinate:[d.cible_y,d.cible_x]
                      },
                      lien: d.valeur,
                      etat: d.etat
@@ -309,30 +270,6 @@ export default class MediaFrancaisView extends PureComponent {
                      return true;
                    }
                    return false;
-                 };
-
-                 getCoordinateByEntity = (countries, entityName) => {
-                   //search for associated country 
-                   var country = null;
-                   var countryFromMedia = this.state.medias_francais.filter(
-                     m => m.nom == entityName
-                   )[0];
-
-                   if (StringUtils.isNotEmpty(countryFromMedia)) {
-                     country = countries.filter(
-                       d => d.country == countryFromMedia.country
-                     )[0];
-
-                     if (
-                       country != null &&
-                       StringUtils.isNotEmpty(country.longitude) &&
-                       StringUtils.isNotEmpty(country.latitude)
-                     ) {
-                       var cx = country.longitude;
-                       var cy = country.latitude;
-                       return [cy, cx];
-                     }
-                   }
                  };
 
                  //creation de connection entre deux pays
@@ -441,7 +378,7 @@ export default class MediaFrancaisView extends PureComponent {
 
                  //Events handlers
                  circleOnHover = event => {
-                   return event.nom + "\n" + event.country;
+                   return event.countryName;
                  };
 
                  circleOnClick = event => {

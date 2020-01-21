@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-import Files from "react-butterfiles";
 
 class FileUpload extends PureComponent {
 
@@ -11,15 +10,15 @@ class FileUpload extends PureComponent {
   render() {
     if(this.props.activated){
     return (
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <button class="input-group-text" id="inputGroupFileAddon01" 
+        <div className="input-group">
+          <div className="input-group-prepend">
+            <button className="input-group-text" id="inputGroupFileAddon01" 
             onClick={(e)=>this.props.onClickHandler(e)}>Upload</button>
           </div>
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="inputGroupFile01"
+          <div className="custom-file">
+            <input type="file" className="custom-file-input" id="inputGroupFile01"
               aria-describedby="inputGroupFileAddon01" onChange={this.props.uploadFile}/>
-            <label class="custom-file-label" for="inputGroupFile01" >Choose file</label>
+            <label className="custom-file-label" htmlFor="inputGroupFile01" >Choose file</label>
           </div>
         </div>
     );
