@@ -24,7 +24,6 @@ app.listen(port, () => console.log(`Server listening on port: ${port}`));
 app.get('/getAll', (req, res) => {
     const { table } = req.query;
     conn.query(`select * from ${table}`, (err, results) => {
-        console.log(`select * from ${table}`);
         if (err) {
             console.log(err);
             return res.send(err);
@@ -35,12 +34,11 @@ app.get('/getAll', (req, res) => {
 });
 
 app.get('/getAllRelationMediaFr', (req, res) => {
-    conn.query(QUERY, (err, results) => {
+    conn.query(QUERY_GET_ALL_RELATIONS, (err, results) => {
         if (err) {
             console.log(err);
             return res.send(err);
         } else {
-            console.log("getAllRelationMediaFr resultat ",results)
             return res.send(results);
         }
     });
@@ -48,18 +46,17 @@ app.get('/getAllRelationMediaFr', (req, res) => {
 
 
 app.get('/getAllMediaFr', (req, res) => {
-    conn.query(QYERY2, (err, results) => {
+    conn.query(QYERY_GET_ALL_MEDIA, (err, results) => {
         if (err) {
             console.log(err);
             return res.send(err);
         } else {
-            console.log("getAllMediaFr resultat ",results)
             return res.send(results);
         }
     });
 });
 
-const QUERY =
+const QUERY_GET_ALL_RELATIONS =
             `select
                     relation.id as id,
                     origin.nom as origine_name,
@@ -85,7 +82,7 @@ const QUERY =
 
                 join theme on
                     (origin.theme_id_fk = theme.id)` ;
-const QYERY2 = 
+const QYERY_GET_ALL_MEDIA = 
 `                select
                     media.id as id,
                     media.nom as nom,

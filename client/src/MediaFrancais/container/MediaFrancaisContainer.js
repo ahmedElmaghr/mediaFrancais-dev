@@ -3,7 +3,6 @@ import { feature } from "topojson-client";
 import DorpDownView from "../../Components/dropDown/DropDownView";
 import FileUpload from "../../Components/fileUpload/FileUpload";
 import MediaFrancaisView from "../../Components/mediaFrancais/MediaFrancaisView";
-import { CountryDb } from '../../db/MediaDbLayer/CountyDb';
 import { MediaFrDb } from '../../db/MediaDbLayer/MediaFrDb';
 import { RelationMediaFrDb } from '../../db/MediaDbLayer/RelationMediaFrDb';
 
@@ -42,7 +41,7 @@ class MediaFrancaisContainer extends Component {
 
   constructView = () => {
     var fileUpload, dropdown, mediaFrancaisView;
-    const { worldData, jsonData, medias_francais, media_filtred, relations_medias_francais,relations_filtered, countries } = this.state;
+    const { worldData, jsonData, medias_francais, media_filtred, relations_medias_francais,relations_filtered } = this.state;
     fileUpload = (
       <FileUpload
         uploadFile={e => {
@@ -69,7 +68,6 @@ class MediaFrancaisContainer extends Component {
           relations_medias_francais={relations_medias_francais}
           relations_filtered={relations_filtered}
           medias_francais={medias_francais}
-          countries={countries}
           worldData={worldData}
           jsonData={jsonData}
           activated={true}
@@ -121,7 +119,6 @@ class MediaFrancaisContainer extends Component {
   loadDataForMediaFrancais() {
     this.loadMediaFr();
     this.loadRelationMedia();
-    this.loadCountries();
     this.updateWordMap();
   }
 
@@ -146,15 +143,6 @@ class MediaFrancaisContainer extends Component {
     })
   };
 
-  loadCountries = () => {
-    //Read country from cerfmedia.country
-    var allCountryPromise = CountryDb.getAllCountry();
-    allCountryPromise.then(response => {
-      this.setState({
-        countries: response.data
-      });
-    })
-  };
 
   updateWordMap() {
     fetch(
